@@ -1,4 +1,5 @@
 use actix_web::{web, App, HttpServer, Responder};
+use std::env;
 use std::time::Instant;
 use tokio::time::{sleep, Duration};
 
@@ -28,12 +29,16 @@ async fn io_load(duration: web::Path<u64>) -> impl Responder {
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
+    // Get port from environment variable, default to 8080 if not set
+    let port = env::var("PORT").unwrap_or_else(|_| "8080".to_string());
+    let address = format!("0.0.0.0:{}", port);
+
     HttpServer::new(|| {
         App::new()
             .route("/cpu_load/{duration}", web::get().to(cpu_load))
             .route("/io_load/{duration}", web::get().to(io_load))
     })
-    .bind("0.0.0.0:8080")?
+    .bind(address)?
     .run()
     .await
 }

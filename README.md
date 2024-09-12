@@ -44,8 +44,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 Clone the repository:
 
 ```bash
-git clone https://github.com/your_username/your_repo_name.git
-cd your_repo_name
+git clone https://github.com/your_username/redesigned-fishstick.git
+cd redesigned-fishstick
 ```
 
 Build the Rust application: You can build the release version of the app to generate a binary:

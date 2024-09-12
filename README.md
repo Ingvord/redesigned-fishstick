@@ -44,7 +44,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 Clone the repository:
 
 ```bash
-git clone https://github.com/your_username/redesigned-fishstick.git
+git clone https://github.com/ingvorde/redesigned-fishstick.git
 cd redesigned-fishstick
 ```
 
@@ -61,7 +61,7 @@ You can run the app using the binary, passing the port via environment variables
 
 ### Running the Server
 ```bash
-PORT=8080 ./target/release/benchmarking_app
+PORT=8080 ./target/release/redesigned-fishstick
 ```
 
 By default, the server listens on 127.0.0.1:8080. To modify the port, adjust the PORT environment variable.

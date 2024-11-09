@@ -1,4 +1,4 @@
-use actix_web::{web, App, HttpServer, Responder};
+use actix_web::{web, App, HttpResponse, HttpServer, Responder};
 use std::env;
 use std::time::Instant;
 use tokio::time::{sleep, Duration};
@@ -15,6 +15,12 @@ async fn cpu_load(duration: web::Path<u64>) -> impl Responder {
     }
 
     format!("Simulated CPU load for {} milliseconds", duration_ms)
+}
+
+async fn hello_world() -> impl Responder {
+    HttpResponse::Ok()
+        .content_type("text/html")
+        .body("<html><body><h1>Hello, World!</h1></body></html>")
 }
 
 // Function for IO-bound load simulation
@@ -37,6 +43,7 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .route("/cpu_load/{duration}", web::get().to(cpu_load))
             .route("/io_load/{duration}", web::get().to(io_load))
+            .route("/hello", web::get().to(hello_world))
     })
     .bind(address)?
     .run()
